@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class NumberGame {
+    // Method to check the guess
+    String check(int guess, int num) {
+        if (guess > num) {
+            return "Too High, Guess Lower!!";
+        } else if (guess < num) {
+            return "Too Low, Guess Higher!!";
+        } else {
+            return "Correct Answer";
+        }
+    }
+
+    // Method to determine if the user has won or lost
+    void wonOrLost(int mode, int attempts) {
+        if ((mode == 0 && attempts > 15) || (mode == 1 && attempts > 10) || (mode == 2 && attempts > 5)) {
+            System.out.println("You Lost! Better Luck Next Time.");
+        } else {
+            System.out.println("YOU WON!!!");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        NumberGame obj = new NumberGame();
+        
+        System.out.println("\t\t\t***Welcome to Number Game***");
+        System.out.println("Instructions : \n1. Guess the number\n2. You have to guess the number within the given lives to win\n3. There are three modes\n\tEasy Mode : 15 Lives\n\tNormal Mode : 10 Lives\n\tHard Mode : 5 Lives\n4. If you use all your lives you can still play until you get it right and see your score.");
+        
+        int playAgain;
+        do {
+            int attempts = 0, mode, guess, num;
+            String answerStatement;
+            
+            // Generating a random number
+            Random random = new Random();
+            num = random.nextInt(100) + 1; // +1 to ensure the number is between 1 and 100
+            
+            // User selecting the mode
+            System.out.println("Enter 0 for Easy\nEnter 1 for Normal\nEnter 2 for Hard");
+            mode = sc.nextInt();
+            
+            System.out.println("Guess a number Between 1 and 100");
+
+            do {
+                guess = sc.nextInt();
+                answerStatement = obj.check(guess, num);
+                System.out.println(answerStatement);
+                attempts++;
+            } while (!answerStatement.equals("Correct Answer"));
+            
+            obj.wonOrLost(mode, attempts);
+            
+            System.out.println("Enter 0 to Play Again, any other number to Exit.");
+            playAgain = sc.nextInt();
+        } while (playAgain == 0);
+    }
+}
