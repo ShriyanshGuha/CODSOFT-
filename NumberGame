@@ -13,12 +13,13 @@ public class NumberGame {
     }
 
     // Method to determine if the user has won or lost
-    void wonOrLost(int mode, int attempts) {
-        if ((mode == 0 && attempts > 15) || (mode == 1 && attempts > 10) || (mode == 2 && attempts > 5)) {
+    void wonOrLost(int mode, int attempts){
+        if ((mode == 0 && attempts > 15) || (mode == 1 && attempts > 10) || (mode == 2 && attempts > 5)) 
             System.out.println("You Lost! Better Luck Next Time.");
-        } else {
-            System.out.println("YOU WON!!!");
-        }
+        else
+        System.out.println("YOU WON!!!");
+        System.out.println("Your Score : "+attempts);
+        
     }
 
     public static void main(String[] args) {
